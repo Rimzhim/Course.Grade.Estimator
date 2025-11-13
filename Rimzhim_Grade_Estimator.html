@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Rimzhim's Grade Estimator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f6fa;
+      color: #1e293b;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background-color: #990000;
+      color: white;
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h2 {
+      color: white;
+    }
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px 40px;
+      width: 520px;
+      margin-top: 40px;
+      margin-bottom: 60px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #334155;
+      margin-bottom: 10px;
+    }
+    p.note {
+      font-size: 13px;
+      text-align: center;
+      color: #475569;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    button {
+      background-color: #990000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 25px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #7d0000;
+    }
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #fef2f2;
+      border-left: 5px solid #990000;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #7d0000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Dr. Rimzhim's Grade Estimator</h2>
+  </header>
+
+  <div class="container">
+    <h1>Step 1: Calculate Your Average Quiz Score (GQs)</h1>
+    <p class="note">Enter your quiz scores as <strong>percentages (0–100)</strong>. The tool will automatically calculate your average after dropping the two lowest quiz scores.</p>
+
+    <form id="quizForm">
+      <label for="GQ01">GQ01:</label>
+      <input type="number" id="GQ01" min="0" max="100" step="0.1" required>
+      <label for="GQ2A">GQ2A:</label>
+      <input type="number" id="GQ2A" min="0" max="100" step="0.1" required>
+      <label for="GQ2B">GQ2B:</label>
+      <input type="number" id="GQ2B" min="0" max="100" step="0.1" required>
+      <label for="GQ03">GQ03:</label>
+      <input type="number" id="GQ03" min="0" max="100" step="0.1" required>
+      <label for="GQ4A">GQ4A:</label>
+      <input type="number" id="GQ4A" min="0" max="100" step="0.1" required>
+      <label for="GQ4B">GQ4B:</label>
+      <input type="number" id="GQ4B" min="0" max="100" step="0.1" required>
+      <label for="GQ05">GQ05:</label>
+      <input type="number" id="GQ05" min="0" max="100" step="0.1" required>
+      <label for="GQ06">GQ06:</label>
+      <input type="number" id="GQ06" min="0" max="100" step="0.1" required>
+      <label for="GQ07">GQ07:</label>
+      <input type="number" id="GQ07" min="0" max="100" step="0.1" required>
+      <label for="GQ08">GQ08:</label>
+      <input type="number" id="GQ08" min="0" max="100" step="0.1" required>
+      <button type="button" onclick="calculateQuizAverage()">Calculate Average Quiz Score</button>
+    </form>
+
+    <div id="quizResult" class="result" style="display: none;"></div>
+  </div>
+
+  <div class="container">
+    <h1>Step 2: Estimate Your Final Course Percentage</h1>
+    <p class="note">Your calculated average quiz score will automatically fill below. Enter your other scores to estimate your final course percentage.</p>
+
+    <form id="scoreForm">
+      <label for="mt1">1st Midterm Exam Score (%):</label>
+      <input type="number" id="mt1" min="0" max="100" step="0.1" required>
+      <label for="mt2">2nd Midterm Exam Score (%):</label>
+      <input type="number" id="mt2" min="0" max="100" step="0.1" required>
+      <label for="finalExam">Final Exam Score (%):</label>
+      <input type="number" id="finalExam" min="0" max="100" step="0.1" required>
+      <label for="quiz">Average Quiz Score (%):</label>
+      <input type="number" id="quiz" min="0" max="100" step="0.1" readonly>
+      <label for="groupProject">Average Group Project Score (%):</label>
+      <input type="number" id="groupProject" min="0" max="100" step="0.1" required>
+      <label for="attendance">Attendance Score (%):</label>
+      <input type="number" id="attendance" min="0" max="100" step="0.1" required>
+      <button type="button" onclick="calculateFinalScore()">Calculate Final Score</button>
+      <button type="button" onclick="resetAll()" style="background-color:#475569; margin-top:10px;">Reset All</button>
+    </form>
+
+    <div id="result" class="result" style="display: none;"></div>
+  </div>
+
+  <script>
+    function calculateQuizAverage() {
+      const ids = ['GQ01','GQ2A','GQ2B','GQ03','GQ4A','GQ4B','GQ05','GQ06','GQ07','GQ08'];
+      let scores = ids.map(id => parseFloat(document.getElementById(id).value) || 0);
+      const GQ02 = (scores[1] + scores[2]) / 2;
+      const GQ04 = (scores[4] + scores[5]) / 2;
+      const quizScores = [scores[0], GQ02, scores[3], GQ04, scores[6], scores[7], scores[8], scores[9]];
+      quizScores.sort((a,b) => a-b);
+      const best6 = quizScores.slice(2);
+      const avgQuiz = best6.reduce((a,b)=>a+b,0) / best6.length;
+      document.getElementById('quiz').value = avgQuiz.toFixed(2);
+      const quizResult = document.getElementById('quizResult');
+      quizResult.style.display = 'block';
+      quizResult.innerHTML = `Your <strong>Average Quiz Score</strong> (after dropping two lowest quizzes) is <span style="font-size: 20px;">${avgQuiz.toFixed(2)}%</span>`;
+    }
+
+    function calculateFinalScore() {
+      const mt1 = parseFloat(document.getElementById('mt1').value) || 0;
+      const mt2 = parseFloat(document.getElementById('mt2').value) || 0;
+      const finalExam = parseFloat(document.getElementById('finalExam').value) || 0;
+      const quiz = parseFloat(document.getElementById('quiz').value) || 0;
+      const groupProject = parseFloat(document.getElementById('groupProject').value) || 0;
+      const attendance = parseFloat(document.getElementById('attendance').value) || 0;
+      const total = (0.15 * mt1) + (0.25 * mt2) + (0.25 * finalExam) + (0.20 * quiz) + (0.10 * groupProject) + (0.05 * attendance);
+      let grade = '';
+      if (total >= 92.45) grade = 'A';
+      else if (total >= 89.45) grade = 'A-';
+      else if (total >= 86.45) grade = 'B+';
+      else if (total >= 82.45) grade = 'B';
+      else if (total >= 79.45) grade = 'B-';
+      else if (total >= 76.45) grade = 'C+';
+      else if (total >= 72.45) grade = 'C';
+      else if (total >= 69.45) grade = 'C-';
+      else if (total >= 66.45) grade = 'D+';
+      else if (total >= 62.45) grade = 'D';
+      else if (total >= 59.45) grade = 'D-';
+      else grade = 'F';
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `Your <strong>Final Course Percentage Score</strong> is <span style="font-size: 20px;">${total.toFixed(2)}%</span><br>Your <strong>Letter Grade</strong> is <span style="font-size: 20px;">${grade}</span>`;
+    }
+
+    function resetAll() {
+      document.getElementById('quizForm').reset();
+      document.getElementById('scoreForm').reset();
+      document.getElementById('quizResult').style.display = 'none';
+      document.getElementById('result').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
