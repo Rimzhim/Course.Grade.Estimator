@@ -174,7 +174,7 @@ input[type="number"] {
 <button class="calcButton" onclick="calculateIntroFinal()">Calculate Final Score</button>
 <div id="introFinalResult" class="resultBox"></div>
 
-<button class="returnButton" onclick="returnHome()">↩ Return to Course Selection</button>
+<button class="returnButton" onclick="returnHome()"><p style="color:#475569;">Visits to this course: <span id="introCount"></span></p><p style="color:#94a3b8;">Last accessed: <span class="lastAccessedCourse"></span></p>↩ Return to Course Selection</button><p style="color:#475569;">Visits to this course: <span id="introCount"></span></p><p style="color:#94a3b8;">Last accessed: <span class="lastAccessedCourse"></span></p>
 
 </div>
 <!-- ============================================================= -->
@@ -213,7 +213,7 @@ input[type="number"] {
 <button class="calcButton" onclick="calculateBioFinal()">Calculate Final Score</button>
 <div id="bioFinalResult" class="resultBox"></div>
 
-<button class="returnButton" onclick="returnHome()">↩ Return to Course Selection</button>
+<button class="returnButton" onclick="returnHome()"><p style="color:#475569;">Visits to this course: <span id="bioCount"></span></p><p style="color:#94a3b8;">Last accessed: <span class="lastAccessedCourse"></span></p>↩ Return to Course Selection</button><p style="color:#475569;">Visits to this course: <span id="bioCount"></span></p><p style="color:#94a3b8;">Last accessed: <span class="lastAccessedCourse"></span></p>
 
 </div>
 <!-- ============================================================= -->
@@ -252,7 +252,7 @@ input[type="number"] {
 <button class="calcButton" onclick="calculateCogFinal()">Calculate Final Score</button>
 <div id="cogFinalResult" class="resultBox"></div>
 
-<button class="returnButton" onclick="returnHome()">↩ Return to Course Selection</button>
+<button class="returnButton" onclick="returnHome()"><p style="color:#475569;">Visits to this course: <span id="cogCount"></span></p><p style="color:#94a3b8;">Last accessed: <span class="lastAccessedCourse"></span></p>↩ Return to Course Selection</button><p style="color:#475569;">Visits to this course: <span id="cogCount"></span></p><p style="color:#94a3b8;">Last accessed: <span class="lastAccessedCourse"></span></p>
 
 </div>
 <!-- ============================================================= -->
@@ -265,6 +265,7 @@ input[type="number"] {
    TAB SWITCHING + VISIT COUNTERS
 ---------------------------------------------------------------- */
 function openCourse(name) {
+  updateLastAccessed();
   ["intro", "bio", "cog"].forEach(id =>
     document.getElementById(id).style.display = "none"
   );
@@ -289,21 +290,21 @@ function returnHome() {
    INDIVIDUAL VISIT COUNTERS (INTRO, BIO, COG)
 ---------------------------------------------------------------- */
 function incrementCounter(id) {
-  let count = Number(localStorage.getItem(id) || 0) + 1;
-  localStorage.setItem(id, count);
+  let count = Number(sessionStorage.getItem(id) || 0) + 1;
+  sessionStorage.setItem(id, count);
   document.getElementById(id).innerText = count;
 }
 
 /* Load counters on page load */
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("introCount").innerText =
-    localStorage.getItem("introCount") || 0;
+    sessionStorage.getItem("introCount") || 0;
 
   document.getElementById("bioCount").innerText =
-    localStorage.getItem("bioCount") || 0;
+    sessionStorage.getItem("bioCount") || 0;
 
   document.getElementById("cogCount").innerText =
-    localStorage.getItem("cogCount") || 0;
+    sessionStorage.getItem("cogCount") || 0;
 
   ["intro", "bio", "cog"].forEach(id =>
     document.getElementById(id).style.display = "none"
@@ -498,8 +499,8 @@ function scrollToTopSmooth() {
    GLOBAL TRACKER — TOTAL VISITS
 ---------------------------------------------------------------- */
 function incrementTotalVisits() {
-  let total = Number(localStorage.getItem("totalVisits") || 0) + 1;
-  localStorage.setItem("totalVisits", total);
+  let total = Number(sessionStorage.getItem("totalVisits") || 0) + 1;
+  sessionStorage.setItem("totalVisits", total);
   document.getElementById("totalVisits").innerText = total;
 }
 
@@ -520,7 +521,7 @@ function setLastAccessed() {
 
   const final = `${date} at ${h12}:${m} ${am}`;
 
-  localStorage.setItem("lastAccessed", final);
+  sessionStorage.setItem("lastAccessed", final);
   document.getElementById("lastAccessed").innerText = final;
 }
 
@@ -537,16 +538,20 @@ function setLastAccessed() {
     <strong>Developed by Anurag Rimzhim.</strong>
   </p>
 
-  <p style="color:#64748b; font-size:13px; margin-top:2px;">
-    Total visits to this tool:
-    <span id="totalVisits">0</span>
-  </p>
-
-  <p style="color:#94a3b8; font-size:12px; margin-top:0px;">
-    Last accessed:
-    <span id="lastAccessed"></span>
-  </p>
+  
 
 </div>
 </body>
 </html>
+<script>
+function updateLastAccessed() {
+    const now = new Date();
+    const options = { year:"numeric", month:"long", day:"numeric" };
+    let h = now.getHours();
+    let h12 = (h % 12) || 12;
+    let m = now.getMinutes().toString().padStart(2, '0');
+    const am = h >= 12 ? "PM" : "AM";
+    const stamp = `${now.toLocaleDateString("en-US", options)} at ${h12}:${m} ${am}`;
+    document.querySelectorAll(".lastAccessedCourse").forEach(e => e.textContent = stamp);
+}
+</script>
