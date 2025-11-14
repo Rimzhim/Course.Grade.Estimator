@@ -3,14 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Dr. Rimzhim’s Course Grade Estimator</title>
 
 <style>
-/* ================================================================
-   GLOBAL PAGE STYLE
-================================================================ */
-
 body {
   font-family: Arial, sans-serif;
   background: #f5f6fa;
@@ -18,7 +13,6 @@ body {
   padding: 0;
   color: #1e293b;
 }
-
 header {
   width: 100%;
   background: crimson;
@@ -28,21 +22,12 @@ header {
   font-size: 26px;
   font-weight: bold;
 }
-
-/* Welcome box */
-
 #welcomeBox {
   margin: 40px auto;
   width: 80%;
   max-width: 700px;
   text-align: center;
 }
-
-#welcomeBox h2 {
-  font-size: 24px;
-  color: #334155;
-}
-
 .divider {
   border: none;
   height: 1px;
@@ -50,14 +35,10 @@ header {
   width: 70%;
   margin: 20px auto;
 }
-
-/* Tabs section */
-
 .tabs {
   text-align: center;
   margin-top: 20px;
 }
-
 .tabButton {
   background: crimson;
   color: white;
@@ -69,13 +50,9 @@ header {
   cursor: pointer;
   transition: background 0.3s;
 }
-
 .tabButton:hover {
   background: #b30026;
 }
-
-/* Hidden calculators */
-
 .tabContent {
   display: none;
   width: 85%;
@@ -86,20 +63,15 @@ header {
   border-radius: 14px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.10);
 }
-
 .tabContent h2 {
   text-align: center;
   color: #334155;
 }
-
-/* Form style */
-
 label {
   display: block;
   margin-top: 14px;
   font-weight: bold;
 }
-
 input[type="number"] {
   width: 100%;
   padding: 8px;
@@ -108,7 +80,6 @@ input[type="number"] {
   border: 1px solid #cbd5e1;
   border-radius: 6px;
 }
-
 .calcButton {
   width: 100%;
   margin-top: 25px;
@@ -120,13 +91,9 @@ input[type="number"] {
   border-radius: 6px;
   cursor: pointer;
 }
-
 .calcButton:hover {
   background: #b30026;
 }
-
-/* Results */
-
 .resultBox {
   display: none;
   margin-top: 20px;
@@ -137,12 +104,8 @@ input[type="number"] {
   font-size: 15px;
   color: #b30026;
 }
-
-/* Return button */
-
 .returnButton {
   margin-top: 30px;
-  display: block;
   width: 100%;
   background: #475569;
   color: white;
@@ -151,7 +114,6 @@ input[type="number"] {
   border-radius: 6px;
   cursor: pointer;
 }
-
 .returnButton:hover {
   background: #334155;
 }
@@ -170,279 +132,210 @@ input[type="number"] {
 <div class="tabs">
   <button class="tabButton" onclick="openCourse('intro')">Introduction to Psychology</button>
   <button class="tabButton" onclick="openCourse('bio')">Biological Psychology</button>
+  <button class="tabButton" onclick="openCourse('cog')">Cognitive Neuroscience</button>
 </div>
 
 <hr class="divider">
 
 <!-- ============================================================= -->
-<!-- INTRODUCTION TO PSYCHOLOGY — FULL CALCULATOR                  -->
+<!-- INTRO PSYCHOLOGY — FULL CALCULATOR -->
 <!-- ============================================================= -->
 
 <div id="intro" class="tabContent">
 
 <h2>Introduction to Psychology – Grade Estimator</h2>
 
-<!-- Visit Counter -->
 <p style="margin-top:-5px;">
   👥 <strong>Visits to this calculator:</strong>
   <span id="introCount">0</span>
 </p>
 
-<!-- ============================= -->
-<!-- STEP 1: QUIZ AVERAGE CALC     -->
-<!-- ============================= -->
-
 <p><strong>Step 1:</strong> Calculate your Average Quiz Score (GQs)</p>
 <p>Enter all quiz scores as <strong>percentages</strong> (0–100).</p>
 
-<label>GQ01:</label>
-<input type="number" id="i_GQ01" min="0" max="100" step="0.1">
+<label>GQ01:</label><input type="number" id="i_GQ01" min="0" max="100" step="0.1">
+<label>GQ2A:</label><input type="number" id="i_GQ2A">
+<label>GQ2B:</label><input type="number" id="i_GQ2B">
+<label>GQ03:</label><input type="number" id="i_GQ03">
+<label>GQ4A:</label><input type="number" id="i_GQ4A">
+<label>GQ4B:</label><input type="number" id="i_GQ4B">
+<label>GQ05:</label><input type="number" id="i_GQ05">
+<label>GQ06:</label><input type="number" id="i_GQ06">
+<label>GQ07:</label><input type="number" id="i_GQ07">
+<label>GQ08:</label><input type="number" id="i_GQ08">
 
-<label>GQ2A:</label>
-<input type="number" id="i_GQ2A" min="0" max="100" step="0.1">
-
-<label>GQ2B:</label>
-<input type="number" id="i_GQ2B" min="0" max="100" step="0.1">
-
-<label>GQ03:</label>
-<input type="number" id="i_GQ03" min="0" max="100" step="0.1">
-
-<label>GQ4A:</label>
-<input type="number" id="i_GQ4A" min="0" max="100" step="0.1">
-
-<label>GQ4B:</label>
-<input type="number" id="i_GQ4B" min="0" max="100" step="0.1">
-
-<label>GQ05:</label>
-<input type="number" id="i_GQ05" min="0" max="100" step="0.1">
-
-<label>GQ06:</label>
-<input type="number" id="i_GQ06" min="0" max="100" step="0.1">
-
-<label>GQ07:</label>
-<input type="number" id="i_GQ07" min="0" max="100" step="0.1">
-
-<label>GQ08:</label>
-<input type="number" id="i_GQ08" min="0" max="100" step="0.1">
-
-<button class="calcButton" onclick="calculateIntroQuiz()">
-  Calculate Average Quiz Score
-</button>
-
+<button class="calcButton" onclick="calculateIntroQuiz()">Calculate Average Quiz Score</button>
 <div id="introQuizResult" class="resultBox"></div>
-
-<!-- ============================= -->
-<!-- STEP 2: FINAL GRADE CALC      -->
-<!-- ============================= -->
 
 <h3 style="margin-top:35px;">Step 2: Calculate Your Final Course Percentage</h3>
 <p>Your Average Quiz Score from Step 1 will auto-fill below.</p>
 
-<label>1st Midterm Exam Score (%):</label>
-<input type="number" id="i_mt1" min="0" max="100" step="0.1">
+<label>1st Midterm Exam Score (%):</label><input type="number" id="i_mt1">
+<label>2nd Midterm Exam Score (%):</label><input type="number" id="i_mt2">
+<label>Final Exam Score (%):</label><input type="number" id="i_final">
+<label>Average Quiz Score (%):</label><input type="number" id="i_quiz" readonly>
+<label>Average Group Project Score (%):</label><input type="number" id="i_gp">
+<label>Attendance Score (%):</label><input type="number" id="i_attend">
 
-<label>2nd Midterm Exam Score (%):</label>
-<input type="number" id="i_mt2" min="0" max="100" step="0.1">
-
-<label>Final Exam Score (%):</label>
-<input type="number" id="i_final" min="0" max="100" step="0.1">
-
-<label>Average Quiz Score (%):</label>
-<input type="number" id="i_quiz" readonly>
-
-<label>Average Group Project Score (%):</label>
-<input type="number" id="i_gp" min="0" max="100" step="0.1">
-
-<label>Attendance Score (%):</label>
-<input type="number" id="i_attend" min="0" max="100" step="0.1">
-
-<button class="calcButton" onclick="calculateIntroFinal()">
-  Calculate Final Score
-</button>
-
+<button class="calcButton" onclick="calculateIntroFinal()">Calculate Final Score</button>
 <div id="introFinalResult" class="resultBox"></div>
 
-<button class="returnButton" onclick="returnHome()">
-  ↩ Return to Course Selection
-</button>
+<button class="returnButton" onclick="returnHome()">↩ Return to Course Selection</button>
 
-</div> <!-- END INTRO PSYCH TAB -->
-
+</div>
 <!-- ============================================================= -->
-<!-- BIOLOGICAL PSYCHOLOGY — FULL CALCULATOR                       -->
+<!-- BIOLOGICAL PSYCHOLOGY — FULL CALCULATOR -->
 <!-- ============================================================= -->
 
 <div id="bio" class="tabContent">
 
 <h2>Biological Psychology – Grade Estimator</h2>
 
-<!-- Visit Counter -->
 <p style="margin-top:-5px;">
   👥 <strong>Visits to this calculator:</strong>
   <span id="bioCount">0</span>
 </p>
 
-<!-- ============================= -->
-<!-- STEP 1: QUIZ AVERAGE CALC     -->
-<!-- ============================= -->
+<p><strong>Step 1:</strong> Calculate your Average Quiz Score</p>
+<p>This course uses <strong>best 7 quizzes</strong> after dropping the lowest.</p>
 
-<p><strong>Step 1:</strong> Calculate your Average of Best Quiz Scores</p>
-<p>Enter all quiz scores as <strong>percentages</strong> (0–100).</p>
+<label>GQ01:</label><input type="number" id="b_GQ01" min="0" max="100" step="0.1">
+<label>GQ02:</label><input type="number" id="b_GQ02">
+<label>GQ03:</label><input type="number" id="b_GQ03">
+<label>GQ4A:</label><input type="number" id="b_GQ4A">
+<label>GQ4B:</label><input type="number" id="b_GQ4B">
+<label>GQ5A:</label><input type="number" id="b_GQ5A">
+<label>GQ5B:</label><input type="number" id="b_GQ5B">
+<label>GQ6A:</label><input type="number" id="b_GQ6A">
+<label>GQ6B:</label><input type="number" id="b_GQ6B">
+<label>GQ07:</label><input type="number" id="b_GQ07">
+<label>GQ08:</label><input type="number" id="b_GQ08">
 
-<label>GQ01:</label>
-<input type="number" id="b_GQ01" min="0" max="100" step="0.1">
-
-<label>GQ02:</label>
-<input type="number" id="b_GQ02" min="0" max="100" step="0.1">
-
-<label>GQ03:</label>
-<input type="number" id="b_GQ03" min="0" max="100" step="0.1">
-
-<!-- Multi-part quizzes -->
-
-<label>GQ4A:</label>
-<input type="number" id="b_GQ4A" min="0" max="100" step="0.1">
-
-<label>GQ4B:</label>
-<input type="number" id="b_GQ4B" min="0" max="100" step="0.1">
-
-<label>GQ5A:</label>
-<input type="number" id="b_GQ5A" min="0" max="100" step="0.1">
-
-<label>GQ5B:</label>
-<input type="number" id="b_GQ5B" min="0" max="100" step="0.1">
-
-<label>GQ6A:</label>
-<input type="number" id="b_GQ6A" min="0" max="100" step="0.1">
-
-<label>GQ6B:</label>
-<input type="number" id="b_GQ6B" min="0" max="100" step="0.1">
-
-<label>GQ07:</label>
-<input type="number" id="b_GQ07" min="0" max="100" step="0.1">
-
-<label>GQ08:</label>
-<input type="number" id="b_GQ08" min="0" max="100" step="0.1">
-
-<button class="calcButton" onclick="calculateBioQuiz()">
-  Calculate Average of Best Quiz Scores
-</button>
-
+<button class="calcButton" onclick="calculateBioQuiz()">Calculate Quiz Average</button>
 <div id="bioQuizResult" class="resultBox"></div>
 
-<!-- ============================= -->
-<!-- STEP 2: FINAL GRADE CALC      -->
-<!-- ============================= -->
+<h3 style="margin-top:35px;">Step 2: Final Course Percentage</h3>
 
-<h3 style="margin-top:35px;">Step 2: Calculate Your Final Course Percentage</h3>
-<p>Your Average of Best Quiz Scores from Step 1 will auto-fill below.</p>
+<label>Midterm Exam Score (%):</label><input type="number" id="b_mt">
+<label>Final Exam Score (%):</label><input type="number" id="b_final">
+<label>Average Quiz Score (%):</label><input type="number" id="b_quiz" readonly>
+<label>Group Project Score (%):</label><input type="number" id="b_gp">
+<label>Attendance Score (%):</label><input type="number" id="b_attend">
 
-<label>Midterm Exam Score (%):</label>
-<input type="number" id="b_mt" min="0" max="100" step="0.1">
-
-<label>Final Exam Score (%):</label>
-<input type="number" id="b_final" min="0" max="100" step="0.1">
-
-<label>Average of Best Quiz Scores (%):</label>
-<input type="number" id="b_quiz" readonly>
-
-<label>Average Group Project Score (%):</label>
-<input type="number" id="b_gp" min="0" max="100" step="0.1">
-
-<label>Attendance Score (%):</label>
-<input type="number" id="b_attend" min="0" max="100" step="0.1">
-
-<button class="calcButton" onclick="calculateBioFinal()">
-  Calculate Final Score
-</button>
-
+<button class="calcButton" onclick="calculateBioFinal()">Calculate Final Score</button>
 <div id="bioFinalResult" class="resultBox"></div>
 
-<button class="returnButton" onclick="returnHome()">
-  ↩ Return to Course Selection
-</button>
+<button class="returnButton" onclick="returnHome()">↩ Return to Course Selection</button>
 
-</div> <!-- END BIO PSYCH TAB -->
-
+</div>
 <!-- ============================================================= -->
-<!-- TAB SWITCHING + VISIT COUNTERS                               -->
+<!-- COGNITIVE NEUROSCIENCE — FULL CALCULATOR (IDENTICAL TO BIO) -->
+<!-- ============================================================= -->
+
+<div id="cog" class="tabContent">
+
+<h2>Cognitive Neuroscience – Grade Estimator</h2>
+
+<p style="margin-top:-5px;">
+  👥 <strong>Visits to this calculator:</strong>
+  <span id="cogCount">0</span>
+</p>
+
+<p><strong>Step 1:</strong> Calculate your Average Quiz Score</p>
+<p>This course uses <strong>best 7 quizzes</strong> after dropping the lowest,
+just like Biological Psychology.</p>
+
+<label>GQ01:</label><input type="number" id="c_GQ01" min="0" max="100" step="0.1">
+<label>GQ02:</label><input type="number" id="c_GQ02">
+<label>GQ03:</label><input type="number" id="c_GQ03">
+<label>GQ4A:</label><input type="number" id="c_GQ4A">
+<label>GQ4B:</label><input type="number" id="c_GQ4B">
+<label>GQ5A:</label><input type="number" id="c_GQ5A">
+<label>GQ5B:</label><input type="number" id="c_GQ5B">
+<label>GQ6A:</label><input type="number" id="c_GQ6A">
+<label>GQ6B:</label><input type="number" id="c_GQ6B">
+<label>GQ07:</label><input type="number" id="c_GQ07">
+<label>GQ08:</label><input type="number" id="c_GQ08">
+
+<button class="calcButton" onclick="calculateCogQuiz()">Calculate Quiz Average</button>
+<div id="cogQuizResult" class="resultBox"></div>
+
+<h3 style="margin-top:35px;">Step 2: Final Course Percentage</h3>
+
+<label>Midterm Exam Score (%):</label><input type="number" id="c_mt">
+<label>Final Exam Score (%):</label><input type="number" id="c_final">
+<label>Average Quiz Score (%):</label><input type="number" id="c_quiz" readonly>
+<label>Group Project Score (%):</label><input type="number" id="c_gp">
+<label>Attendance Score (%):</label><input type="number" id="c_attend">
+
+<button class="calcButton" onclick="calculateCogFinal()">Calculate Final Score</button>
+<div id="cogFinalResult" class="resultBox"></div>
+
+<button class="returnButton" onclick="returnHome()">↩ Return to Course Selection</button>
+
+</div>
+<!-- ============================================================= -->
+<!-- JAVASCRIPT FOR ALL THREE CALCULATORS -->
 <!-- ============================================================= -->
 
 <script>
-/* ================================================================
-   Helper: Show selected course tab & hide others
-================================================================ */
-function openCourse(courseName) {
 
-  // Hide all tabs
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("bio").style.display = "none";
+/* ---------------------------------------------------------------
+   TAB SWITCHING + VISIT COUNTERS
+---------------------------------------------------------------- */
+function openCourse(name) {
+  ["intro", "bio", "cog"].forEach(id =>
+    document.getElementById(id).style.display = "none"
+  );
 
-  // Hide welcome screen
   document.getElementById("welcomeBox").style.display = "none";
+  document.getElementById(name).style.display = "block";
 
-  // Show the selected tab
-  document.getElementById(courseName).style.display = "block";
-
-  // Update visit counters
-  if (courseName === "intro") {
-    incrementCounter("introCount");
-  } else if (courseName === "bio") {
-    incrementCounter("bioCount");
-  }
+  incrementCounter(name + "Count");
+  scrollToTopSmooth();
 }
 
-/* ================================================================
-   Helper: Return to welcome screen
-================================================================ */
 function returnHome() {
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("bio").style.display = "none";
+  ["intro", "bio", "cog"].forEach(id =>
+    document.getElementById(id).style.display = "none"
+  );
   document.getElementById("welcomeBox").style.display = "block";
+
+  scrollToTopSmooth();
 }
 
-/* ================================================================
-   Visit Counter using localStorage
-================================================================ */
+/* ---------------------------------------------------------------
+   INDIVIDUAL VISIT COUNTERS (INTRO, BIO, COG)
+---------------------------------------------------------------- */
 function incrementCounter(id) {
-  let count = localStorage.getItem(id);
-
-  if (!count) count = 0;
-  count = Number(count) + 1;
-
+  let count = Number(localStorage.getItem(id) || 0) + 1;
   localStorage.setItem(id, count);
   document.getElementById(id).innerText = count;
 }
 
-/* ================================================================
-   Initialize visit counters & hide tabs on load
-================================================================ */
+/* Load counters on page load */
 document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("introCount").innerText =
+    localStorage.getItem("introCount") || 0;
 
-  // Load stored visit counts
-  const introStored = localStorage.getItem("introCount") || 0;
-  const bioStored   = localStorage.getItem("bioCount")   || 0;
+  document.getElementById("bioCount").innerText =
+    localStorage.getItem("bioCount") || 0;
 
-  // Display stored values
-  document.getElementById("introCount").innerText = introStored;
-  document.getElementById("bioCount").innerText   = bioStored;
+  document.getElementById("cogCount").innerText =
+    localStorage.getItem("cogCount") || 0;
 
-  // Ensure both calculators are hidden at startup
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("bio").style.display = "none";
+  ["intro", "bio", "cog"].forEach(id =>
+    document.getElementById(id).style.display = "none"
+  );
+
+  incrementTotalVisits();
+  setLastAccessed();
 });
-</script>
 
-<!-- ============================================================= -->
-<!-- INTRO PSYCH + BIO PSYCH CALCULATION LOGIC                    -->
-<!-- ============================================================= -->
-
-<script>
-/* ================================================================
-   SHARED LETTER GRADE FUNCTION (Inclusive Upper Bounds)
-================================================================ */
+/* ---------------------------------------------------------------
+   LETTER GRADE FUNCTION (INCLUSIVE UPPER BOUNDS)
+---------------------------------------------------------------- */
 function computeLetter(score) {
-
   if (score >= 92.45) return "A";
   if (score >= 89.45) return "A-";
   if (score >= 86.45) return "B+";
@@ -454,267 +347,225 @@ function computeLetter(score) {
   if (score >= 66.45) return "D+";
   if (score >= 62.45) return "D";
   if (score >= 59.45) return "D-";
-
   return "F";
 }
 
-
-/* ================================================================
-   INTRO PSYCHOLOGY — STEP 1:
-   DROP LOWEST TWO → AVERAGE BEST SIX
-================================================================ */
-
+/* ---------------------------------------------------------------
+   INTRO PSYCH — DROP LOWEST TWO
+---------------------------------------------------------------- */
 function calculateIntroQuiz() {
+  const q = [
+    "i_GQ01","i_GQ2A","i_GQ2B","i_GQ03",
+    "i_GQ4A","i_GQ4B","i_GQ05","i_GQ06",
+    "i_GQ07","i_GQ08"
+  ].map(id => parseFloat(document.getElementById(id).value));
 
-  const q01 = parseFloat(document.getElementById("i_GQ01").value);
-  const q2A = parseFloat(document.getElementById("i_GQ2A").value);
-  const q2B = parseFloat(document.getElementById("i_GQ2B").value);
-  const q03 = parseFloat(document.getElementById("i_GQ03").value);
-  const q4A = parseFloat(document.getElementById("i_GQ4A").value);
-  const q4B = parseFloat(document.getElementById("i_GQ4B").value);
-  const q05 = parseFloat(document.getElementById("i_GQ05").value);
-  const q06 = parseFloat(document.getElementById("i_GQ06").value);
-  const q07 = parseFloat(document.getElementById("i_GQ07").value);
-  const q08 = parseFloat(document.getElementById("i_GQ08").value);
-
-  const all = [q01, q2A, q2B, q03, q4A, q4B, q05, q06, q07, q08];
-  if (all.some(v => isNaN(v))) {
-    alert("Please enter ALL quiz scores before calculating.");
+  if (q.some(isNaN)) {
+    alert("Please enter all quiz scores.");
     return;
   }
 
-  const GQ02 = (q2A + q2B) / 2;
-  const GQ04 = (q4A + q4B) / 2;
+  const G2 = (q[1] + q[2]) / 2;
+  const G4 = (q[4] + q[5]) / 2;
 
-  let quizzes = [
-    q01, GQ02, q03, GQ04,
-    q05, q06, q07, q08
-  ];
+  let quizzes = [q[0], G2, q[3], G4, q[6], q[7], q[8], q[9]];
+  quizzes.sort((a, b) => a - b);
 
-  quizzes.sort((a,b) => a - b);
-  const bestSix = quizzes.slice(2);
-
-  const avg =
-    bestSix.reduce((a,b)=>a+b,0) / bestSix.length;
-
-  document.getElementById("introQuizResult").style.display = "block";
-  document.getElementById("introQuizResult").innerHTML =
-    `Your <strong>Average Quiz Score</strong> (after dropping two lowest) is:
-     <span style="font-size:20px;">${avg.toFixed(2)}%</span>`;
+  const bestSix = quizzes.slice(2); 
+  const avg = bestSix.reduce((a, b) => a + b, 0) / 6;
 
   document.getElementById("i_quiz").value = avg.toFixed(2);
+  document.getElementById("introQuizResult").style.display = "block";
+  document.getElementById("introQuizResult").innerHTML =
+    `Average Quiz Score: <strong>${avg.toFixed(2)}%</strong>`;
 }
 
-
-/* ================================================================
-   INTRO PSYCHOLOGY — STEP 2:
-   FINAL PERCENTAGE + LETTER GRADE
-================================================================ */
-
 function calculateIntroFinal() {
+  const v = [
+    "i_mt1","i_mt2","i_final","i_quiz","i_gp","i_attend"
+  ].map(id => parseFloat(document.getElementById(id).value));
 
-  const mt1   = parseFloat(document.getElementById("i_mt1").value);
-  const mt2   = parseFloat(document.getElementById("i_mt2").value);
-  const fin   = parseFloat(document.getElementById("i_final").value);
-  const quiz  = parseFloat(document.getElementById("i_quiz").value);
-  const gp    = parseFloat(document.getElementById("i_gp").value);
-  const att   = parseFloat(document.getElementById("i_attend").value);
-
-  const fields = [mt1, mt2, fin, quiz, gp, att];
-  if (fields.some(v => isNaN(v))) {
-    alert("Please enter ALL fields to calculate your final score.");
+  if (v.some(isNaN)) {
+    alert("Please enter all fields.");
     return;
   }
 
   const total =
-      0.15 * mt1 +
-      0.25 * mt2 +
-      0.25 * fin +
-      0.20 * quiz +
-      0.10 * gp +
-      0.05 * att;
+    0.15*v[0] + 0.25*v[1] + 0.25*v[2] +
+    0.20*v[3] + 0.10*v[4] + 0.05*v[5];
 
   const letter = computeLetter(total);
 
   document.getElementById("introFinalResult").style.display = "block";
   document.getElementById("introFinalResult").innerHTML =
-    `Your <strong>Final Course Percentage</strong> is 
-     <span style="font-size:20px;">${total.toFixed(2)}%</span><br>
+    `Final Course Score: <strong>${total.toFixed(2)}%</strong><br>
      Letter Grade: <strong>${letter}</strong>`;
 }
 
-
-/* ================================================================
-   BIOLOGICAL PSYCHOLOGY — STEP 1:
-   DROP LOWEST ONE → AVERAGE BEST SEVEN
-================================================================ */
-
+/* ---------------------------------------------------------------
+   BIO PSYCH — DROP LOWEST ONE
+---------------------------------------------------------------- */
 function calculateBioQuiz() {
+  const q = [
+    "b_GQ01","b_GQ02","b_GQ03","b_GQ4A","b_GQ4B",
+    "b_GQ5A","b_GQ5B","b_GQ6A","b_GQ6B","b_GQ07","b_GQ08"
+  ].map(id => parseFloat(document.getElementById(id).value));
 
-  const q01 = parseFloat(document.getElementById("b_GQ01").value);
-  const q02 = parseFloat(document.getElementById("b_GQ02").value);
-  const q03 = parseFloat(document.getElementById("b_GQ03").value);
-  const q4A = parseFloat(document.getElementById("b_GQ4A").value);
-  const q4B = parseFloat(document.getElementById("b_GQ4B").value);
-  const q5A = parseFloat(document.getElementById("b_GQ5A").value);
-  const q5B = parseFloat(document.getElementById("b_GQ5B").value);
-  const q6A = parseFloat(document.getElementById("b_GQ6A").value);
-  const q6B = parseFloat(document.getElementById("b_GQ6B").value);
-  const q07 = parseFloat(document.getElementById("b_GQ07").value);
-  const q08 = parseFloat(document.getElementById("b_GQ08").value);
-
-  const all = [q01, q02, q03, q4A, q4B, q5A, q5B, q6A, q6B, q07, q08];
-  if (all.some(v => isNaN(v))) {
-    alert("Please enter ALL quiz scores before calculating.");
+  if (q.some(isNaN)) {
+    alert("Please enter all quiz scores.");
     return;
   }
 
-  const GQ04 = (q4A + q4B) / 2;
-  const GQ05 = (q5A + q5B) / 2;
-  const GQ06 = (q6A + q6B) / 2;
+  const G4 = (q[3] + q[4]) / 2;
+  const G5 = (q[5] + q[6]) / 2;
+  const G6 = (q[7] + q[8]) / 2;
 
-  let quizzes = [
-    q01, q02, q03,
-    GQ04, GQ05, GQ06,
-    q07, q08
-  ];
+  let quizzes = [q[0], q[1], q[2], G4, G5, G6, q[9], q[10]];
+  quizzes.sort((a, b) => a - b);
 
-  quizzes.sort((a,b) => a - b);
   const bestSeven = quizzes.slice(1);
-
-  const avg =
-    bestSeven.reduce((a,b)=>a+b,0) / bestSeven.length;
-
-  document.getElementById("bioQuizResult").style.display = "block";
-  document.getElementById("bioQuizResult").innerHTML =
-    `Your <strong>Average of Best Quiz Scores</strong> 
-     (after dropping the lowest) is:
-     <span style="font-size:20px;">${avg.toFixed(2)}%</span>`;
+  const avg = bestSeven.reduce((a, b) => a + b, 0) / 7;
 
   document.getElementById("b_quiz").value = avg.toFixed(2);
+  document.getElementById("bioQuizResult").style.display = "block";
+  document.getElementById("bioQuizResult").innerHTML =
+    `Average of Best Quizzes: <strong>${avg.toFixed(2)}%</strong>`;
 }
 
-
-/* ================================================================
-   BIO PSYCH — STEP 2:
-   FINAL PERCENTAGE + LETTER GRADE
-================================================================ */
-
 function calculateBioFinal() {
+  const v = [
+    "b_mt","b_final","b_quiz","b_gp","b_attend"
+  ].map(id => parseFloat(document.getElementById(id).value));
 
-  const mt    = parseFloat(document.getElementById("b_mt").value);
-  const fin   = parseFloat(document.getElementById("b_final").value);
-  const quiz  = parseFloat(document.getElementById("b_quiz").value);
-  const gp    = parseFloat(document.getElementById("b_gp").value);
-  const att   = parseFloat(document.getElementById("b_attend").value);
-
-  const fields = [mt, fin, quiz, gp, att];
-  if (fields.some(v => isNaN(v))) {
-    alert("Please enter ALL fields to calculate your final score.");
+  if (v.some(isNaN)) {
+    alert("Please enter all fields.");
     return;
   }
 
   const total =
-      0.25 * mt +
-      0.30 * fin +
-      0.25 * quiz +
-      0.15 * gp +
-      0.05 * att;
+    0.25*v[0] + 0.30*v[1] + 0.25*v[2] +
+    0.15*v[3] + 0.05*v[4];
 
   const letter = computeLetter(total);
 
   document.getElementById("bioFinalResult").style.display = "block";
   document.getElementById("bioFinalResult").innerHTML =
-    `Your <strong>Final Course Percentage</strong> is 
-     <span style="font-size:20px;">${total.toFixed(2)}%</span><br>
+    `Final Course Score: <strong>${total.toFixed(2)}%</strong><br>
      Letter Grade: <strong>${letter}</strong>`;
 }
 
-</script>
+/* ---------------------------------------------------------------
+   COGNITIVE NEUROSCIENCE — SAME AS BIO
+---------------------------------------------------------------- */
+function calculateCogQuiz() {
+  const q = [
+    "c_GQ01","c_GQ02","c_GQ03","c_GQ4A","c_GQ4B",
+    "c_GQ5A","c_GQ5B","c_GQ6A","c_GQ6B","c_GQ07","c_GQ08"
+  ].map(id => parseFloat(document.getElementById(id).value));
 
-<!-- ============================================================= -->
-<!-- FOOTER + FRIENDLY MESSAGE + LAST UPDATED                      -->
-<!-- ============================================================= -->
+  if (q.some(isNaN)) {
+    alert("Please enter all quiz scores.");
+    return;
+  }
 
-<hr style="
-  width: 70%;
-  margin: 50px auto 20px auto;
-  border: 0;
-  border-top: 1px solid rgba(0,0,0,0.08);
-">
+  const G4 = (q[3] + q[4]) / 2;
+  const G5 = (q[5] + q[6]) / 2;
+  const G6 = (q[7] + q[8]) / 2;
 
-<div id="footerArea" style="text-align:center; margin-bottom:40px;">
+  let quizzes = [q[0], q[1], q[2], G4, G5, G6, q[9], q[10]];
+  quizzes.sort((a, b) => a - b);
 
-  <p style="color:#475569; font-size:14px; margin-bottom:6px;">
-    😊 <strong>Thank you for using the Grade Estimator!</strong>
-  </p>
+  const bestSeven = quizzes.slice(1);
+  const avg = bestSeven.reduce((a, b) => a + b, 0) / 7;
 
-  <p style="color:#64748b; font-size:13px; margin:4px 0;">
-    Version 1.0 — Intro Psych & Bio Psych Edition
-  </p>
+  document.getElementById("c_quiz").value = avg.toFixed(2);
+  document.getElementById("cogQuizResult").style.display = "block";
+  document.getElementById("cogQuizResult").innerHTML =
+    `Average of Best Quizzes: <strong>${avg.toFixed(2)}%</strong>`;
+}
 
-  <p style="color:#94a3b8; font-size:12px; margin-top:4px;">
-    Last updated: <span id="lastUpdated"></span>
-  </p>
+function calculateCogFinal() {
+  const v = [
+    "c_mt","c_final","c_quiz","c_gp","c_attend"
+  ].map(id => parseFloat(document.getElementById(id).value));
 
-</div>
+  if (v.some(isNaN)) {
+    alert("Please enter all fields.");
+    return;
+  }
 
-<script>
-/* ================================================================
-   AUTO-SET LAST UPDATED TIMESTAMP
-================================================================ */
+  const total =
+    0.25*v[0] + 0.30*v[1] + 0.25*v[2] +
+    0.15*v[3] + 0.05*v[4];
 
-document.addEventListener("DOMContentLoaded", () => {
-  const now = new Date();
+  const letter = computeLetter(total);
 
-  const optionsDate = {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  };
+  document.getElementById("cogFinalResult").style.display = "block";
+  document.getElementById("cogFinalResult").innerHTML =
+    `Final Course Score: <strong>${total.toFixed(2)}%</strong><br>
+     Letter Grade: <strong>${letter}</strong>`;
+}
 
-  let hours = now.getHours();
-  const minutes = now.getMinutes().toString().padStart(2, "0");
-  const ampm = hours >= 12 ? "PM" : "AM";
-  hours = (hours % 12) || 12;
-
-  const formatted =
-    now.toLocaleDateString("en-US", optionsDate) +
-    " at " +
-    hours + ":" + minutes + " " + ampm;
-
-  document.getElementById("lastUpdated").textContent = formatted;
-});
-
-
-/* ================================================================
-   SMOOTH SCROLL ENHANCEMENTS
-================================================================ */
-
+/* ---------------------------------------------------------------
+   SMOOTH SCROLL
+---------------------------------------------------------------- */
 function scrollToTopSmooth() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/* Patch: make openCourse() scroll smoothly */
-const _openCourse_original = openCourse;
-openCourse = function(name) {
-  _openCourse_original(name);
-  scrollToTopSmooth();
-};
+/* ---------------------------------------------------------------
+   GLOBAL TRACKER — TOTAL VISITS
+---------------------------------------------------------------- */
+function incrementTotalVisits() {
+  let total = Number(localStorage.getItem("totalVisits") || 0) + 1;
+  localStorage.setItem("totalVisits", total);
+  document.getElementById("totalVisits").innerText = total;
+}
 
-/* Patch: make returnHome() scroll smoothly */
-const _returnHome_original = returnHome;
-returnHome = function() {
-  _returnHome_original();
-  scrollToTopSmooth();
-};
+/* ---------------------------------------------------------------
+   GLOBAL TRACKER — LAST ACCESSED
+---------------------------------------------------------------- */
+function setLastAccessed() {
+  const now = new Date();
 
+  const options = { year:"numeric", month:"long", day:"numeric" };
+  const date = now.toLocaleDateString("en-US", options);
 
-/* ================================================================
-   PAGE LOAD CONFIRMATION
-================================================================ */
-console.log("Grade Estimator fully initialized.");
+  let h = now.getHours();
+  // Use hour modulo 12 to convert to 12-hour format; if result is 0 then use 12
+  let h12 = (h % 12) || 12;
+  let m = now.getMinutes().toString().padStart(2, "0");
+  const am = h >= 12 ? "PM" : "AM";
+
+  const final = `${date} at ${h12}:${m} ${am}`;
+
+  localStorage.setItem("lastAccessed", final);
+  document.getElementById("lastAccessed").innerText = final;
+}
+
 </script>
+<!-- ============================================================= -->
+<!-- FOOTER + GLOBAL TRACKER DISPLAY -->
+<!-- ============================================================= -->
 
+<hr class="divider">
+
+<div style="text-align:center; margin-bottom:40px;">
+
+  <p style="color:#475569; font-size:14px; margin-bottom:6px;">
+    <strong>Developed by Anurag Rimzhim.</strong>
+  </p>
+
+  <p style="color:#64748b; font-size:13px; margin-top:2px;">
+    Total visits to this tool:
+    <span id="totalVisits">0</span>
+  </p>
+
+  <p style="color:#94a3b8; font-size:12px; margin-top:0px;">
+    Last accessed:
+    <span id="lastAccessed"></span>
+  </p>
+
+</div>
 </body>
 </html>
